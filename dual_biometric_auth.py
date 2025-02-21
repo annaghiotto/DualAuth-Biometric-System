@@ -22,9 +22,12 @@ user_id_counter = 0  # Starting user ID
 
 # Authentication
 def authenticate():
-    arduino.write(b'AUTH\n')  # Send the AUTH command to Arduino
+    # Send the AUTH command to Arduino
+    arduino.write(b'AUTH\n')
 
     print("Waiting for Arduino responses...")  # Debug message
+
+    # Reading lines from Arduino
     while True:
         response = arduino.readline().decode('utf-8').strip()
         if not response:
@@ -122,7 +125,8 @@ def compare_templates_cosine(template1, template2, thresholds=None):
     # Compare Heart Rate
     heart_rate1 = template1.get("heart_rate", [])
     heart_rate2 = template2.get("heart_rate", [])
-    
+
+    # Handling different lenghts
     len1 = len(heart_rate1)
     len2 = len(heart_rate2)
     
