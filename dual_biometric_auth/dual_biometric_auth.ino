@@ -8,14 +8,12 @@ const int button3Pin = 7; // Exit
 const int greenLedPin = 9;  // Green LED
 const int redLedPin = 10;    // Red LED
 const int yellowLedPin = 11; // Yellow LED
-
-// Button states
 int lastButton1State = LOW;
 int lastButton2State = LOW;
 int lastButton3State = LOW;
 
 // Serial ports setup
-SoftwareSerial fingerprintSerial(2, 3); // Fingerprint sensor (TX yellow/RX white)
+SoftwareSerial fingerprintSerial(2, 3); // Fingerprint sensor
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&fingerprintSerial);
 
 // ECG sensor
