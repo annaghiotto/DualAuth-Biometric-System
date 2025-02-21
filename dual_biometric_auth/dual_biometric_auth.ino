@@ -150,7 +150,6 @@ void handleFingerprintEnroll(int userId) {
   Serial.print("Enrolling user ID: ");
   Serial.println(userId);
 
-  // Acquisizione del primo campione
   Serial.println("Place your finger on the sensor.");
   digitalWrite(yellowLedPin, HIGH);
   while (finger.getImage() != FINGERPRINT_OK);
@@ -185,15 +184,12 @@ void handleFingerprintEnroll(int userId) {
   }
   digitalWrite(yellowLedPin, LOW);
 
-  // Creazione del modello di impronta
   result = finger.createModel();
   if (result != FINGERPRINT_OK) {
     Serial.println("ERROR: Failed to create fingerprint model.");
     redLight();
     return;
   }
-
-  // Memorizzazione del modello nel database
   result = finger.storeModel(userId);
   if (result == FINGERPRINT_OK) {
     Serial.println("ENROLL_SUCCESS");
@@ -266,7 +262,6 @@ void acquireAndSendECGData() {
     }
     Serial.println(); // End the block with a newline
 
-    // Simulate a delay between blocks (if needed)
     delay(10); // Adjust as required for timing consistency
   }
 
@@ -279,21 +274,18 @@ void greenLight() {
     delay(3000);
     digitalWrite(greenLedPin, LOW);
 }
-
 // Turn on red LED
 void redLight() {
     digitalWrite(redLedPin, HIGH);
     delay(3000);
     digitalWrite(redLedPin, LOW);
 }
-
 // Turn off LEDs
 void turnOffLeds() {
   digitalWrite(greenLedPin, LOW);
   digitalWrite(redLedPin, LOW);
   digitalWrite(yellowLedPin, LOW);
 }
-
 // Turn on LEDs
 void turnOnLeds() {
   digitalWrite(greenLedPin, HIGH);
